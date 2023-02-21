@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import ContactsList from "../components/ContactsList";
 import { fetchData } from "../services/FetchData";
+import CreateContactForm from "./CreateContactForm";
 
 function Contacts() {
   const [data, setData] = useState([]);
+  const [create, setCreate] = useState(false);
 
   useEffect(() => {
     const response = fetchData(
@@ -13,10 +15,14 @@ function Contacts() {
       setData(result.data.data);
     });
   }, []);
+  const handleCreateButton = () => {
+    setCreate(true);
+  };
 
   return (
     <div>
-      <ContactsList data={data} />
+      <button onClick={handleCreateButton}>+</button>
+      {create ? <CreateContactForm /> : <ContactsList data={data} />}
     </div>
   );
 }
