@@ -1,0 +1,9 @@
+.title{
+  text-align: center;
+  font-weight:700;
+  font-size: 2rem;
+  border-bottom: 2px solid grey;
+  color: brown;
+  margin: 0;
+  background-color: antiquewhite;
+}
