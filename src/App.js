@@ -1,28 +1,18 @@
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ContactsList from "./components/ContactsList";
+import { fetchData } from "./services/FetchData";
 
 function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=10",
-        {
-          auth: {
-            username: "admin",
-            password: "admin",
-          },
-        }
-      )
-      .then(function (res) {
-        setData(res.data.data);
-      })
-      .catch(function (error) {
-        console.log("wrong response");
-      });
+    const response = fetchData(
+      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=10"
+    );
+    response.then(function (result) {
+      setData(result.data.data);
+    });
   }, []);
 
   return (
