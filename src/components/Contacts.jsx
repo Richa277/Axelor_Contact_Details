@@ -9,7 +9,7 @@ function Contacts() {
 
   useEffect(() => {
     const response = fetchData(
-      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=10"
+      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=30"
     );
     response.then(function (result) {
       setData(result.data.data);
