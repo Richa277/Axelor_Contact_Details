@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { PostData } from "../services/PostData";
+import styles from "./EditDetails.module.css";
 
 function EditDetail(props) {
-    const id=props.id;
-    console.log(id)
+  const id = props.id;
+  console.log(id);
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [dob, setDob] = useState();
@@ -27,45 +28,49 @@ function EditDetail(props) {
   };
   const handleDob = (e) => {
     setDob(e.target.value);
-  }
-  const handleSave=(e)=>{
-  e.preventDefault();
-  const response=PostData(
-    "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/"+id,
-firstName,
-lastName,
-dob,
-id
-  );
-  response.then(function(result){
-    console.log("result")
-  })
-  .catch(function(error){
-    console.log("error")
-  })
-  }
+  };
+  const handleSave = (e) => {
+    e.preventDefault();
+    const response = PostData(
+      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/" + id,
+      firstName,
+      lastName,
+      dob,
+      id
+    );
+    response
+      .then(function (result) {
+        console.log("result");
+      })
+      .catch(function (error) {
+        console.log("error");
+      });
+  };
 
   return (
-    <form>
+    <form className={styles.selectedContact}>
       {props.data.map((val, key) => {
         return (
           val.id === props.id &&
           (edit ? (
             <div key={key}>
               <input type="text" value={firstName} onChange={handleFirst} />
-              <input type="text" value={lastName} onChange={handleLast}  />
+              <input type="text" value={lastName} onChange={handleLast} />
               <input type="date" value={dob} onChange={handleDob} />
               <button onClick={handleSave}>Save</button>
             </div>
           ) : (
             <div key={key}>
-              <button onClick={handleEdit}>Edit</button>
-              <span>Name: {val.fullName}</span>
-              <p> Date of Birth: {val.dateOfBirth}</p>
-              <div>
-                <h4>Contacts</h4>
-                <span>Emails: {val.email}</span>
-                <span>Phones: {val.phone}</span>
+              <span onClick={handleEdit} className={styles.edit}>
+                Edit
+              </span>
+              <p className={styles.name}>Name: {val.fullName}</p>
+              <p className={styles.dob}> Date of Birth: {val.dateOfBirth}</p>
+              <h3>Contacts</h3>
+              <hr />
+              <div className={styles.others}>
+                <span className={styles.email}>Emails: {val.email}</span>
+                <span className={styles.basicDetails}>Phones: {val.phone}</span>
               </div>
             </div>
           ))
