@@ -5,21 +5,23 @@ import EditDetail from "./EditDetails";
 function ContactsList(props) {
   const [view, setView] = useState(false);
   const [selected, setSelected] = useState();
-  const handleContact = (val) => {
+  const [version, setVersion] = useState();
+  const handleContact = (val, version) => {
     setView(true);
     setSelected(val);
+    setVersion(version);
   };
   return (
     <div className={styles.list}>
       {view ? (
-        <EditDetail data={props.data} id={selected} />
+        <EditDetail data={props.data} id={selected} version={version} />
       ) : (
         props.data.map((val, key) => {
           return (
             <div
               key={key}
               className={styles.details}
-              onClick={() => handleContact(val.id)}
+              onClick={() => handleContact(val.id, val.version)}
             >
               <div>
                 <img src={profile} alt="profile" className={styles.profile} />

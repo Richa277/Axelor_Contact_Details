@@ -4,7 +4,7 @@ import styles from "./EditDetails.module.css";
 
 function EditDetail(props) {
   const id = props.id;
-  console.log(id);
+  const version = props.version;
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [dob, setDob] = useState();
@@ -36,7 +36,8 @@ function EditDetail(props) {
       firstName,
       lastName,
       dob,
-      id
+      id,
+      version
     );
     response
       .then(function (result) {
