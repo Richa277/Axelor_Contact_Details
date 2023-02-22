@@ -31,7 +31,7 @@ function EditDetail(props) {
   };
   const handleSave = (e) => {
     e.preventDefault();
-    const response = PostData(
+    PostData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/" + id,
       firstName,
       lastName,
@@ -39,13 +39,6 @@ function EditDetail(props) {
       id,
       version
     );
-    response
-      .then(function (result) {
-        console.log("result");
-      })
-      .catch(function (error) {
-        console.log("error");
-      });
   };
 
   return (

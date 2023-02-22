@@ -30,7 +30,6 @@ function CreateContactForm() {
     );
   };
 
-
   return (
     <div>
       <form>
