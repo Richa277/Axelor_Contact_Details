@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ContactsList from "../components/ContactsList";
 import { fetchData } from "../services/FetchData";
 import CreateContactForm from "./CreateContactForm";
+import styles from "./Contacts.module.css";
 
 function Contacts() {
   const [data, setData] = useState([]);
@@ -20,9 +21,13 @@ function Contacts() {
   };
 
   return (
-    <div>
-      <button onClick={handleCreateButton}>+</button>
-      {create ? <CreateContactForm /> : <ContactsList data={data} />}
+    <div className={styles.list}>
+      <button onClick={handleCreateButton} className={styles.add}>+</button>
+      {create ? (
+        <CreateContactForm />
+      ) : (
+        <ContactsList data={data} />
+      )}
     </div>
   );
 }

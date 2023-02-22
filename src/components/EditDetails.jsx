@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { PostData } from "../services/PostData";
 
 function EditDetail(props) {
@@ -6,7 +6,6 @@ function EditDetail(props) {
     console.log(id)
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
-  //   const [selected, setSelected] = useState({});
   const [dob, setDob] = useState();
   const [edit, setEdit] = useState(false);
   const handleEdit = () => {
@@ -15,9 +14,9 @@ function EditDetail(props) {
     setLastName(props.data.find(findit).lastName);
     setDob(props.data.find(findit).dateOfBirth);
   };
-  const findit = (o) => {
-    if (o.id === props.id) {
-      return o;
+  const findit = (val) => {
+    if (val.id === props.id) {
+      return val;
     }
   };
   const handleFirst = (e) => {

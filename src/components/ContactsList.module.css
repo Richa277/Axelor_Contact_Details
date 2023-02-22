@@ -26,3 +26,7 @@
 .email, .phone{
   font-weight: 700;
 }
+.list :hover{
+  cursor: pointer;
+  background-color: darkgrey;
+}
