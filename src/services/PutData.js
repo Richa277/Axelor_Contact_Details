@@ -1,16 +1,14 @@
 import axios from "axios";
-
-export const PostData = (url, firstName, lastName, dob, id) => {
+export const putData = (url, firstName, lastName, email, contact) => {
   let result = axios
-    .post(
+    .put(
       url,
       {
         data: {
-          id: id,
-          version: 2,
           firstName: firstName,
           lastName: lastName,
-          dateOfBirth: dob,
+          emails: [{ email: email }],
+          phones: [{ phone: contact }],
         },
       },
       {
