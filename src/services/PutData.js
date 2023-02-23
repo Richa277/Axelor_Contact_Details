@@ -1,7 +1,7 @@
 import axios from "axios";
 export const putData = (url, firstName, lastName, email, contact) => {
   let result = axios
-    .put(
+    .post(
       url,
       {
         data: {
