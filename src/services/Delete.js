@@ -4,10 +4,12 @@ export const deleteData = (url, id, version) => {
     .post(
       url,
       {
-        data: {
-          id: id,
-          version: version,
-        },
+        records: [
+          {
+            id: id,
+            version: version,
+          },
+        ],
       },
       {
         auth: {

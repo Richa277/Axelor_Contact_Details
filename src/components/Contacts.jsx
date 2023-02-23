@@ -21,7 +21,7 @@ function Contacts() {
     });
 
   }, []);
-  // console.log(data)
+
 
   return (
     <div className={styles.list}>
