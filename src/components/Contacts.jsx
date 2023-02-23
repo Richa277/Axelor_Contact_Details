@@ -23,7 +23,7 @@ function Contacts() {
   return (
     <div className={styles.list}>
       <button onClick={handleCreateButton} className={styles.add}>
-        +
+        New Contact
       </button>
       {create ? <CreateContactForm /> : <ContactsList data={data} />}
     </div>

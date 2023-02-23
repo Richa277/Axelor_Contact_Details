@@ -36,11 +36,27 @@ function CreateContactForm() {
         <input
           type="text"
           placeholder="First name"
+          required
           onChange={handleFirstName}
         />
-        <input type="text" placeholder="Last name" onChange={handleLastName} />
-        <input type="email" placeholder=" Email" onChange={handleEmail} />
-        <input type="number" placeholder="Phone No." onChange={handleContact} />
+        <input
+          type="text"
+          placeholder="Last name"
+          onChange={handleLastName}
+          required
+        />
+        <input
+          type="email"
+          placeholder=" Email"
+          onChange={handleEmail}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Phone No."
+          onChange={handleContact}
+          required
+        />
         <button onClick={handleSave}>Save</button>
       </form>
     </div>

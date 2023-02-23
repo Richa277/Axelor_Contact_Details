@@ -12,32 +12,44 @@ function ContactsList(props) {
     setSelected(val);
     setVersion(version);
   };
-  const handleDelete=(id,fullName,version)=>{
-      const response=deleteData("/bi-pivot/ws/rest/com.axelor.contact.db.Contact/"+id,id,
-      fullName,version)
-      response.then(function(result){
-        console.log("result")
+  const handleDelete = (id, version) => {
+    const response = deleteData(
+      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/removeAll",
+      id,
+      version
+    );
+    response
+      .then(function (result) {
+        console.log("result");
       })
-      .catch((error)=>{
-        console.log("error")
-      })
-  }
+
+      .catch((error) => {
+        console.log("error");
+      });
+  };
   return (
     <div className={styles.list}>
       {view ? (
         <EditDetail data={props.data} id={selected} version={version} />
-        ) : (
-          props.data.map((val, key) => {
-            return (
-              <div
-              key={key}
-              className={styles.details}
-              onClick={() => handleContact(val.id, val.version)}
-              >
+      ) : (
+        props.data.map((val, key) => {
+          return (
+            <div key={key} className={styles.details}>
               <div>
                 <img src={profile} alt="profile" className={styles.profile} />
                 <p>{val.fullName}</p>
-              <span onClick={()=>handleDelete(val.id,val.fullName,val.version)} className={styles.delete}>Delete</span>
+                <button
+                  onClick={() => handleDelete(val.id, val.version)}
+                  className={styles.delete}
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => handleContact(val.id, val.version)}
+                  className={styles.edit}
+                >
+                  Edit
+                </button>
               </div>
               <div>
                 {val.email ? (
@@ -47,7 +59,7 @@ function ContactsList(props) {
                   </p>
                 ) : (
                   <p></p>
-                  )}
+                )}
                 {val.phone ? (
                   <p>
                     <span className={styles.phone}>Phone: </span>
@@ -55,7 +67,7 @@ function ContactsList(props) {
                   </p>
                 ) : (
                   <p></p>
-                  )}
+                )}
               </div>
             </div>
           );
