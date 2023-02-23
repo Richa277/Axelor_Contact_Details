@@ -1,28 +1,20 @@
 import { useState } from "react";
-import { editData } from "../services/EditData";
+import { editData } from "../../services/EditData";
 import styles from "./EditDetails.module.css";
 
 function EditDetail(props) {
   const id = props.id;
   const version = props.version;
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [dob, setDob] = useState();
+  const [state, setState] = useState({ firstName: "", lastName: "", dob: "" });
   const [edit, setEdit] = useState(false);
-  const handleFirst = (e) => {
-    setFirstName(e.target.value);
-  };
-  const handleLast = (e) => {
-    setLastName(e.target.value);
-  };
-  const handleDob = (e) => {
-    setDob(e.target.value);
-  };
+
   const handleEdit = () => {
     setEdit(true);
-    setFirstName(props.data.find(findit).firstName);
-    setLastName(props.data.find(findit).lastName);
-    setDob(props.data.find(findit).dateOfBirth);
+    setState({
+      firstName: props.data.find(findit).firstName,
+      lastName: props.data.find(findit).lastName,
+      dob: props.data.find(findit).dateOfBirth,
+    });
   };
   const findit = (val) => {
     if (val.id === props.id) {
@@ -30,16 +22,21 @@ function EditDetail(props) {
     }
   };
 
-  const handleSave = (e) => {
+  const handleSaveChanges = (e) => {
     e.preventDefault();
     editData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/" + id,
-      firstName,
-      lastName,
-      dob,
+      state.firstName,
+      state.lastName,
+      state.dob,
       id,
       version
     );
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setState({ ...state, [e.target.name]: value });
   };
 
   return (
@@ -49,10 +46,25 @@ function EditDetail(props) {
           val.id === props.id &&
           (edit ? (
             <div key={key}>
-              <input type="text" value={firstName} onChange={handleFirst} />
-              <input type="text" value={lastName} onChange={handleLast} />
-              <input type="date" value={dob} onChange={handleDob} />
-              <button onClick={handleSave}>Save</button>
+              <input
+                type="text"
+                value={state.firstName}
+                name="firstName"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                value={state.lastName}
+                name="lastName"
+                onChange={handleChange}
+              />
+              <input
+                type="date"
+                value={state.dob}
+                name="dob"
+                onChange={handleChange}
+              />
+              <button onClick={handleSaveChanges}>Save</button>
             </div>
           ) : (
             <div key={key}>

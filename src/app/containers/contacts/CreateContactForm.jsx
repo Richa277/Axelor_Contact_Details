@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createData } from "../services/CreateData";
+import { createData } from "../../services/CreateData";
 
 function CreateContactForm() {
   const [firstName, setFirstName] = useState("");
@@ -19,7 +19,7 @@ function CreateContactForm() {
   const handleContact = (e) => {
     setContact(e.target.value);
   };
-  const handleSave = (e) => {
+  const handleSaveData = (e) => {
     e.preventDefault();
     createData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact",
@@ -57,7 +57,7 @@ function CreateContactForm() {
           onChange={handleContact}
           required
         />
-        <button onClick={handleSave}>Save</button>
+        <button onClick={handleSaveData}>Save</button>
       </form>
     </div>
   );

@@ -1,0 +1,3 @@
+1) If can't access to backend how I am able to create the new data and it is reflecting on the original page.
+2) When used post and put both were working fine but using delete was not the correct way then why it was working for put? are they same?
+3) why and how post is working? 

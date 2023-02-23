@@ -1,43 +1,52 @@
 import styles from "./ContactsList.module.css";
-import profile from "../download.png";
-import { useState } from "react";
+import profile from "../../../../src/assets/images/profile.png"
+import { useEffect, useState } from "react";
 import EditDetail from "./EditDetails";
-import { deleteData } from "../services/Delete";
-function ContactsList(props) {
+import { fetchData } from "../../services/FetchData";
+import { deleteData } from "../../services/Delete";
+function ContactsList() {
+  const [data, setData] = useState([]);
   const [view, setView] = useState(false);
   const [selected, setSelected] = useState();
   const [version, setVersion] = useState();
-  const handleContact = (val, version) => {
+  const handleEditContact = (val, version) => {
     setView(true);
     setSelected(val);
     setVersion(version);
   };
-  const handleDelete = (id, version) => {
+  const handleDeleteContact = (id, version) => {
     deleteData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/removeAll",
       id,
       version
     );
   };
+  useEffect(() => {
+    fetchData(
+      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=30"
+    ).then(function (result) {
+      setData(result.data.data);
+    });
+  }, []);
   return (
     <div className={styles.list}>
       {view ? (
-        <EditDetail data={props.data} id={selected} version={version} />
+        <EditDetail data={data} id={selected} version={version} />
       ) : (
-        props.data.map((val, key) => {
+        data.map((val) => {
           return (
-            <div key={key} className={styles.details}>
+            <div key={val.id}className={styles.details}>
               <div>
                 <img src={profile} alt="profile" className={styles.profile} />
                 <p>{val.fullName}</p>
                 <button
-                  onClick={() => handleDelete(val.id, val.version)}
+                  onClick={() => handleDeleteContact(val.id, val.version)}
                   className={styles.delete}
                 >
                   Delete
                 </button>
                 <button
-                  onClick={() => handleContact(val.id, val.version)}
+                  onClick={() => handleEditContact(val.id, val.version)}
                   className={styles.edit}
                 >
                   Edit
