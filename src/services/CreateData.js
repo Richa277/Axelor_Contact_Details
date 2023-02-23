@@ -1,5 +1,5 @@
 import axios from "axios";
-export const putData = (url, firstName, lastName, email, contact) => {
+export const createData = (url, firstName, lastName, email, contact) => {
   let result = axios
     .post(
       url,

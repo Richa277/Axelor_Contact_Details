@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { putData } from "../services/PutData";
+import { createData } from "../services/CreateData";
 
 function CreateContactForm() {
   const [firstName, setFirstName] = useState("");
@@ -21,7 +21,7 @@ function CreateContactForm() {
   };
   const handleSave = (e) => {
     e.preventDefault();
-    putData(
+    createData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact",
       firstName,
       lastName,

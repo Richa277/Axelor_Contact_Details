@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PostData } from "../services/PostData";
+import { editData } from "../services/EditData";
 import styles from "./EditDetails.module.css";
 
 function EditDetail(props) {
@@ -31,7 +31,7 @@ function EditDetail(props) {
   };
   const handleSave = (e) => {
     e.preventDefault();
-    PostData(
+    editData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/" + id,
       firstName,
       lastName,

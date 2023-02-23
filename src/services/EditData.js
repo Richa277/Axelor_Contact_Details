@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const PostData = (url, firstName, lastName, dob, id, version) => {
+export const editData = (url, firstName, lastName, dob, id, version) => {
   let result = axios
     .post(
       url,
