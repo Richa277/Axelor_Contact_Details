@@ -8,6 +8,10 @@ function Contacts() {
   const [data, setData] = useState([]);
   const [create, setCreate] = useState(false);
 
+  const handleCreateButton = () => {
+    setCreate(true);
+  };
+  
   useEffect(() => {
     const response = fetchData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=30"
@@ -15,10 +19,9 @@ function Contacts() {
     response.then(function (result) {
       setData(result.data.data);
     });
+
   }, []);
-  const handleCreateButton = () => {
-    setCreate(true);
-  };
+  // console.log(data)
 
   return (
     <div className={styles.list}>

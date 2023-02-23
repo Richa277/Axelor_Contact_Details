@@ -9,6 +9,15 @@ function EditDetail(props) {
   const [lastName, setLastName] = useState();
   const [dob, setDob] = useState();
   const [edit, setEdit] = useState(false);
+  const handleFirst = (e) => {
+    setFirstName(e.target.value);
+  };
+  const handleLast = (e) => {
+    setLastName(e.target.value);
+  };
+  const handleDob = (e) => {
+    setDob(e.target.value);
+  };
   const handleEdit = () => {
     setEdit(true);
     setFirstName(props.data.find(findit).firstName);
@@ -20,15 +29,7 @@ function EditDetail(props) {
       return val;
     }
   };
-  const handleFirst = (e) => {
-    setFirstName(e.target.value);
-  };
-  const handleLast = (e) => {
-    setLastName(e.target.value);
-  };
-  const handleDob = (e) => {
-    setDob(e.target.value);
-  };
+
   const handleSave = (e) => {
     e.preventDefault();
     editData(

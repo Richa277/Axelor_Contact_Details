@@ -13,19 +13,11 @@ function ContactsList(props) {
     setVersion(version);
   };
   const handleDelete = (id, version) => {
-    const response = deleteData(
+    deleteData(
       "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/removeAll",
       id,
       version
     );
-    response
-      .then(function (result) {
-        console.log("result");
-      })
-
-      .catch((error) => {
-        console.log("error");
-      });
   };
   return (
     <div className={styles.list}>
