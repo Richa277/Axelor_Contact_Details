@@ -1,4 +1,4 @@
-import { createData, deleteData, editData, fetch } from "../../services/Rest";
+import { createData, deleteData, editData, fetch } from "../services/Rest";
 
 function fetchContacts() {
   return fetch(

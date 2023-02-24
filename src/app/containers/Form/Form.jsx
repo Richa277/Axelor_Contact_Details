@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./Form.module.css";
-import { api } from "./Api";
+import { api } from "../Api";
 
 function Form(props) {
   const id = props.id;
