@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ContactsList from "./app/containers/contacts/ContactsList/ContactsList";
+import ContactsList from "./app/containers/contacts/contactsList/ContactsList";
 
 function App() {
   return (

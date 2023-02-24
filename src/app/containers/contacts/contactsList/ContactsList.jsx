@@ -1,9 +1,9 @@
 import styles from "./ContactsList.module.css";
 import profile from "../../../../../src/assets/images/profile.png";
 import { useEffect, useState } from "react";
-import Form from "../../Form/Form";
-import { api } from "../../Api";
+import { api } from "../Api";
 import Loader from "react-js-loader";
+import Form from "../form/Form";
 function ContactsList() {
   const [data, setData] = useState([]);
   const [view, setView] = useState(false);

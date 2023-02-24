@@ -36,9 +36,7 @@ function Form(props) {
   };
   const handleSaveNewData = (e) => {
     e.preventDefault();
-    api.createContact(
-      state
-    );
+    api.createContact(state);
   };
 
   return (
@@ -61,11 +59,7 @@ function Form(props) {
                   name="lastName"
                   onChange={handleChange}
                 />
-                <input
-                  type="date"
-                  name="dob"
-                  onChange={handleChange}
-                />
+                <input type="date" name="dob" onChange={handleChange} />
                 <button onClick={handleSaveChanges}>Save</button>
               </div>
             ) : (
