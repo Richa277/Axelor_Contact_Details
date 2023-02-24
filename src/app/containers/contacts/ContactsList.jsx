@@ -3,13 +3,11 @@ import profile from "../../../../src/assets/images/profile.png";
 import { useEffect, useState } from "react";
 import Form from "./Form";
 import { api } from "./Api";
-import { Link } from "react-router-dom";
 import Loader from "react-js-loader";
 function ContactsList() {
   const [data, setData] = useState([]);
   const [view, setView] = useState(false);
-  const [selected, setSelected] = useState();
-  const [version, setVersion] = useState();
+  const [selected, setSelected] = useState({ id: "", version: "" });
   const [create, setCreate] = useState(false);
 
   const handleAddNewContact = () => {
@@ -18,8 +16,7 @@ function ContactsList() {
 
   const handleEditContact = (val, version) => {
     setView(true);
-    setSelected(val);
-    setVersion(version);
+    setSelected({ ...selected, id: val, version: version });
   };
   const handleDeleteContact = (id, version) => {
     api.deleteContact(id, version);
@@ -37,13 +34,9 @@ function ContactsList() {
             New Contact
           </button>
           {create ? (
-            <Link to="/form">
-              <Form />
-            </Link>
+            <Form />
           ) : view ? (
-            <Link to="/form">
-              <Form data={data} id={selected} version={version} />
-            </Link>
+            <Form data={data} id={selected.id} version={selected.version} />
           ) : (
             data.map((val) => {
               return (

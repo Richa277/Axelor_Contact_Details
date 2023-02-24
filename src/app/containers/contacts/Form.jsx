@@ -32,12 +32,7 @@ function Form(props) {
   };
   const handleSaveChanges = (e) => {
     e.preventDefault();
-    api.updateContact(
-    state.firstName,
-    state.lastName,
-    state.dob,
-    id,
-    version)
+    api.updateContact(state.firstName, state.lastName, state.dob, id, version);
   };
   const handleSaveNewData = (e) => {
     e.preventDefault();
@@ -97,7 +92,7 @@ function Form(props) {
           );
         })
       ) : (
-        <form>
+        <>
           <input
             type="text"
             name="firstName"
@@ -127,7 +122,7 @@ function Form(props) {
             required
           />
           <button onClick={handleSaveNewData}>Save</button>
-        </form>
+        </>
       )}
     </form>
   );
