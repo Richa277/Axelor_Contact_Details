@@ -3,6 +3,8 @@ import profile from "../../../../src/assets/images/profile.png";
 import { useEffect, useState } from "react";
 import Form from "./Form";
 import { api } from "./Api";
+import { Route, Router, Routes } from "react-router";
+import { Link } from "react-router-dom";
 function ContactsList() {
   const [data, setData] = useState([]);
   const [view, setView] = useState(false);
@@ -33,9 +35,9 @@ function ContactsList() {
         New Contact
       </button>
       {create ? (
-        <Form />
+        <Link to="/form"><Form/></Link>
       ) : view ? (
-        <Form data={data} id={selected} version={version} />
+        <Link to="/form"><Form data={data} id={selected} version={version} /></Link>
       ) : (
         data.map((val) => {
           return (
