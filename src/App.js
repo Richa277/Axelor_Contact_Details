@@ -1,11 +1,17 @@
 import styles from "./App.module.css";
-import Contacts from "./app/containers/contacts/Contacts";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
+import ContactsList from "./app/containers/contacts/ContactsList";
 
 function App() {
   return (
     <div>
       <h2 className={styles.title}>Contacts</h2>
-      <Contacts/>
+     <ContactsList/>
     </div>
   );
 }

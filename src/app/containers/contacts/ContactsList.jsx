@@ -1,41 +1,45 @@
 import styles from "./ContactsList.module.css";
-import profile from "../../../../src/assets/images/profile.png"
+import profile from "../../../../src/assets/images/profile.png";
 import { useEffect, useState } from "react";
-import EditDetail from "./EditDetails";
-import { fetchData } from "../../services/FetchData";
-import { deleteData } from "../../services/Delete";
+import Form from "./Form";
+import { api } from "./Api";
 function ContactsList() {
   const [data, setData] = useState([]);
   const [view, setView] = useState(false);
   const [selected, setSelected] = useState();
   const [version, setVersion] = useState();
+  const [create, setCreate] = useState(false);
+
+  const handleAddNewContact = () => {
+    setCreate(true);
+  };
+
   const handleEditContact = (val, version) => {
     setView(true);
     setSelected(val);
     setVersion(version);
   };
   const handleDeleteContact = (id, version) => {
-    deleteData(
-      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/removeAll",
-      id,
-      version
-    );
+    api.deleteContact(id, version);
   };
   useEffect(() => {
-    fetchData(
-      "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=30"
-    ).then(function (result) {
+    api.fetchContacts().then(function (result) {
       setData(result.data.data);
     });
   }, []);
   return (
-    <div className={styles.list}>
-      {view ? (
-        <EditDetail data={data} id={selected} version={version} />
+    <div>
+      <button onClick={handleAddNewContact} className={styles.add}>
+        New Contact
+      </button>
+      {create ? (
+        <Form />
+      ) : view ? (
+        <Form data={data} id={selected} version={version} />
       ) : (
         data.map((val) => {
           return (
-            <div key={val.id}className={styles.details}>
+            <div key={val.id} className={styles.details}>
               <div>
                 <img src={profile} alt="profile" className={styles.profile} />
                 <p>{val.fullName}</p>

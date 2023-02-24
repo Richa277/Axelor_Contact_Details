@@ -1,0 +1,31 @@
+.selectedContact {
+    background-color: white;
+    width: 80%;
+    margin-left: 24rem;
+    font-size: 0.8rem;
+  }
+  .selectedContact:hover {
+    background-color: white;
+  }
+  .edit {
+    float: left;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    font-weight: 600;
+  }
+  .edit:hover {
+    cursor: pointer;
+  }
+  .name,
+  .dob {
+    text-align: center;
+  }
+  .email {
+    float: left;
+  }
+  .others {
+    padding-bottom: 1rem;
+    margin-left: 1rem;
+  }
+  
