@@ -5,6 +5,7 @@ import { api } from "./Api";
 function Form(props) {
   const id = props.id;
   const version = props.version;
+  const [edit, setEdit] = useState(false);
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -12,7 +13,6 @@ function Form(props) {
     email: "",
     contact: "",
   });
-  const [edit, setEdit] = useState(false);
   const handleEdit = () => {
     setEdit(true);
     setState({
@@ -32,15 +32,12 @@ function Form(props) {
   };
   const handleSaveChanges = (e) => {
     e.preventDefault();
-    api.updateContact(state.firstName, state.lastName, state.dob, id, version);
+    api.updateContact(state, id, version);
   };
   const handleSaveNewData = (e) => {
     e.preventDefault();
     api.createContact(
-      state.firstName,
-      state.lastName,
-      state.email,
-      state.contact
+      state
     );
   };
 
@@ -66,7 +63,6 @@ function Form(props) {
                 />
                 <input
                   type="date"
-                  value={state.dob}
                   name="dob"
                   onChange={handleChange}
                 />

@@ -5,23 +5,23 @@ function fetchContacts() {
     "/bi-pivot/ws/rest/com.axelor.contact.db.Contact?offset=0&limit=30"
   );
 }
-function updateContact(firstName, lastName, dob, id, version) {
+function updateContact(data, id, version) {
   editData(
     "/bi-pivot/ws/rest/com.axelor.contact.db.Contact/" + id,
-    firstName,
-    lastName,
-    dob,
+    data.firstName,
+    data.lastName,
+    data.dob,
     id,
     version
   );
 }
-function createContact(firstName, lastName, email, contact) {
+function createContact(data) {
   createData(
     "/bi-pivot/ws/rest/com.axelor.contact.db.Contact",
-    firstName,
-    lastName,
-    email,
-    contact
+    data.firstName,
+    data.lastName,
+    data.email,
+    data.contact
   );
 }
 function deleteContact(id, version) {
